@@ -13,5 +13,9 @@ UCLASS()
 class INPUTPROJECT_API AInputProjectGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+
+public:
+
+	AInputProjectGameModeBase();
 	
 };
