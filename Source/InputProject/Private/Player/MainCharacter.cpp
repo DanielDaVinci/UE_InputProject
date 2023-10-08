@@ -4,6 +4,8 @@
 #include "Player/MainCharacter.h"
 
 #include "Components/ArrowComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/PawnMovementComponent.h"
 
 
 AMainCharacter::AMainCharacter()
@@ -17,6 +19,8 @@ AMainCharacter::AMainCharacter()
 
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
 	CameraComponent->SetupAttachment(SpringArmComponent);
+
+	HealthComponent = CreateDefaultSubobject<UHealthComponent>("HealthComponent");
 }
 
 
@@ -25,6 +29,10 @@ void AMainCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	check(GetMesh());
+
+	SpringArmComponent->SetRelativeRotation(GetActorRotation());
+
+	//AddMovementInput(FVector(1.0f, 0.0f, 1.0f), 100, true);
 }
 
 
@@ -45,21 +53,28 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAxis("LookUp", this, &AMainCharacter::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("TurnAround", this, &AMainCharacter::TurnAround);
+
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AMainCharacter::Jump);
 }
 
 void AMainCharacter::SetCharacterDirToVelocityDir()
 {
 	if (!GetMesh() || GetVelocity().Size() == 0.0f)
 		return;
-	
-	FRotator Rotation = GetVelocity().ToOrientationRotator();
-	Rotation.Yaw -= 90.0f;
-	
+
+	float VelocityYawRotation = GetVelocity().ToOrientationRotator().Yaw;
+
+	FRotator Rotation = GetMesh()->GetComponentRotation();
+	Rotation.Yaw = VelocityYawRotation - 90.0f;
+
 	GetMesh()->SetWorldRotation(Rotation);
 }
 
 void AMainCharacter::MoveForward(float Amount)
 {
+	if (!CameraComponent || !CanMove)
+		return;
+
 	AddMovementInput(CameraComponent->GetForwardVector(), Amount);
 
 	SetCharacterDirToVelocityDir();
@@ -67,6 +82,9 @@ void AMainCharacter::MoveForward(float Amount)
 
 void AMainCharacter::MoveRight(float Amount)
 {
+	if (!CameraComponent || !CanMove)
+		return;
+
 	AddMovementInput(CameraComponent->GetRightVector(), Amount);
 
 	SetCharacterDirToVelocityDir();
@@ -76,7 +94,20 @@ void AMainCharacter::TurnAround(float Amount)
 {
 	FRotator Rotation = SpringArmComponent->GetRelativeRotation();
 	Rotation.Yaw += Amount * CameraSpeedYawRotation;
-	
+
 	SpringArmComponent->SetRelativeRotation(Rotation);
 }
 
+void AMainCharacter::Landed(const FHitResult& Hit)
+{
+	Super::Landed(Hit);
+
+	CanMove = false;
+	FTimerHandle LandingTimerHandle;
+	GetWorldTimerManager().SetTimer(LandingTimerHandle, this, &AMainCharacter::OnLandingEnd, LandingDelay, false);
+}
+
+void AMainCharacter::OnLandingEnd()
+{
+	CanMove = true;
+}
