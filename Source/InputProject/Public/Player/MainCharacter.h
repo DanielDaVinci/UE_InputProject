@@ -37,6 +37,8 @@ protected:
 
 	virtual void Landed(const FHitResult& Hit) override;
 
+	void OnDeath();
+
 public:
 	virtual void Tick(float DeltaTime) override;
 

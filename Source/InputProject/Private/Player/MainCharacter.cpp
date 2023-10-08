@@ -5,6 +5,7 @@
 
 #include "Components/ArrowComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
 
 
@@ -28,11 +29,12 @@ void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	check(GetCharacterMovement());
 	check(GetMesh());
 
-	SpringArmComponent->SetRelativeRotation(GetActorRotation());
+	HealthComponent->OnDeath.AddUObject(this, &AMainCharacter::OnDeath);
 
-	//AddMovementInput(FVector(1.0f, 0.0f, 1.0f), 100, true);
+	SpringArmComponent->SetRelativeRotation(GetActorRotation());
 }
 
 
@@ -105,6 +107,14 @@ void AMainCharacter::Landed(const FHitResult& Hit)
 	CanMove = false;
 	FTimerHandle LandingTimerHandle;
 	GetWorldTimerManager().SetTimer(LandingTimerHandle, this, &AMainCharacter::OnLandingEnd, LandingDelay, false);
+}
+
+void AMainCharacter::OnDeath()
+{
+	GetCharacterMovement()->DisableMovement();
+	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
+	GetMesh()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	GetMesh()->SetSimulatePhysics(true);
 }
 
 void AMainCharacter::OnLandingEnd()

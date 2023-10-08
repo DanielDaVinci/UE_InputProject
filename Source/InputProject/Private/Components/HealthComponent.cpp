@@ -39,7 +39,6 @@ void UHealthComponent::OnTakeAnyDamage(AActor* DamagedActor, float Damage, const
 void UHealthComponent::SetHealth(float NewHealth)
 {
 	Health = FMath::Clamp(NewHealth, 0.0f, MaxHealth);
-	UE_LOG(LogTemp, Display, TEXT("%f"), Health);
 
 	OnHealthChanged.Broadcast(Health);
 }

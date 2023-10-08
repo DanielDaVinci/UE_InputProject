@@ -7,24 +7,12 @@
 
 bool UPlayerHUDWidget::Initialize()
 {
-	APawn* Player = GetOwningPlayerPawn();
-	if (!Player)
-		return 0.0f;
-	
-	UHealthComponent* HealthComponent = Cast<UHealthComponent>(Player->GetComponentByClass(UHealthComponent::StaticClass()));
-	if (!HealthComponent)
-		return 0.0f;
-	
 	return Super::Initialize();
 }
 
 float UPlayerHUDWidget::GetHealthPercent() const
 {
-	APawn* Player = GetOwningPlayerPawn();
-	if (!Player)
-		return 0.0f;
-	
-	UHealthComponent* HealthComponent = Cast<UHealthComponent>(Player->GetComponentByClass(UHealthComponent::StaticClass()));
+	UHealthComponent* HealthComponent = GetHealthComponent();
 	if (!HealthComponent)
 		return 0.0f;
 
@@ -33,13 +21,18 @@ float UPlayerHUDWidget::GetHealthPercent() const
 
 bool UPlayerHUDWidget::IsDead() const
 {
-	APawn* Player = GetOwningPlayerPawn();
-	if (!Player)
-		return false;
-	
-	UHealthComponent* HealthComponent = Cast<UHealthComponent>(Player->GetComponentByClass(UHealthComponent::StaticClass()));
+	UHealthComponent* HealthComponent = GetHealthComponent();
 	if (!HealthComponent)
-		return false;
+		return true;
 
 	return HealthComponent->IsDead();
+}
+
+UHealthComponent* UPlayerHUDWidget::GetHealthComponent() const
+{
+	APawn* Player = GetOwningPlayerPawn();
+	if (!Player)
+		return nullptr;
+
+	return Cast<UHealthComponent>(Player->GetComponentByClass(UHealthComponent::StaticClass()));
 }

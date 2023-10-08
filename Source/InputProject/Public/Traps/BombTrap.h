@@ -31,9 +31,6 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Damage")
 	float Damage = 30.0f;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Damage")
-	bool DoFullDamage = true;
 	
 	UFUNCTION(BlueprintCallable)
 	void SetScaleByPercent(float PercentProgress);

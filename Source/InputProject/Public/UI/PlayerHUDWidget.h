@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/HealthComponent.h"
 #include "PlayerHUDWidget.generated.h"
 
 
@@ -20,4 +21,8 @@ protected:
 
 	UFUNCTION(BlueprintCallable, Category="UI")
 	bool IsDead() const;
+
+private:
+
+	UHealthComponent* GetHealthComponent() const;
 };
