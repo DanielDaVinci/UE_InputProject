@@ -13,7 +13,6 @@ class INPUTPROJECT_API ABombTrap : public ABaseTrap
 	GENERATED_BODY()
 
 protected:
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
 	float AnimationTime = 1.0f;
 
@@ -31,7 +30,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Damage")
 	float Damage = 30.0f;
-	
+
 	UFUNCTION(BlueprintCallable)
 	void SetScaleByPercent(float PercentProgress);
 
@@ -49,11 +48,11 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void EndReload();
-	
+
 	virtual void BeginPlay() override;
 
 private:
-
+	UPROPERTY()
 	UMaterialInstanceDynamic* DynamicMaterial;
 	void SetDynamicMaterial();
 

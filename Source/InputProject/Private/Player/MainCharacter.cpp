@@ -7,6 +7,8 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "WorldObjects/FinishSpace.h"
 
 
 AMainCharacter::AMainCharacter()
@@ -32,6 +34,9 @@ void AMainCharacter::BeginPlay()
 	check(GetCharacterMovement());
 	check(GetMesh());
 
+	Finished = false;
+	CharacterSpawnTime = FDateTime::Now();
+
 	HealthComponent->OnDeath.AddUObject(this, &AMainCharacter::OnDeath);
 
 	SpringArmComponent->SetRelativeRotation(GetActorRotation());
@@ -53,10 +58,30 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMainCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMainCharacter::MoveRight);
 
-	PlayerInputComponent->BindAxis("LookUp", this, &AMainCharacter::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("TurnAround", this, &AMainCharacter::TurnAround);
+	PlayerInputComponent->BindAxis("LookUp", this, &AMainCharacter::PitchInput);
+	PlayerInputComponent->BindAxis("TurnAround", this, &AMainCharacter::YawInput);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AMainCharacter::Jump);
+}
+
+void AMainCharacter::MoveForward(float Amount)
+{
+	if (!CameraComponent)
+		return;
+	
+	AddMovementInput(CameraComponent->GetForwardVector().GetSafeNormal2D(), Amount);
+
+	SetCharacterDirToVelocityDir();
+}
+
+void AMainCharacter::MoveRight(float Amount)
+{
+	if (!CameraComponent)
+		return;
+	
+	AddMovementInput(CameraComponent->GetRightVector().GetSafeNormal2D(), Amount);
+
+	SetCharacterDirToVelocityDir();
 }
 
 void AMainCharacter::SetCharacterDirToVelocityDir()
@@ -72,28 +97,19 @@ void AMainCharacter::SetCharacterDirToVelocityDir()
 	GetMesh()->SetWorldRotation(Rotation);
 }
 
-void AMainCharacter::MoveForward(float Amount)
+void AMainCharacter::PitchInput(float Amount)
 {
-	if (!CameraComponent || !CanMove)
+	if (!bCameraMovement)
 		return;
-
-	AddMovementInput(CameraComponent->GetForwardVector(), Amount);
-
-	SetCharacterDirToVelocityDir();
+	
+	AddControllerPitchInput(Amount * CameraSpeedPitchRotation);
 }
 
-void AMainCharacter::MoveRight(float Amount)
+void AMainCharacter::YawInput(float Amount)
 {
-	if (!CameraComponent || !CanMove)
+	if (!bCameraMovement)
 		return;
-
-	AddMovementInput(CameraComponent->GetRightVector(), Amount);
-
-	SetCharacterDirToVelocityDir();
-}
-
-void AMainCharacter::TurnAround(float Amount)
-{
+	
 	FRotator Rotation = SpringArmComponent->GetRelativeRotation();
 	Rotation.Yaw += Amount * CameraSpeedYawRotation;
 
@@ -103,21 +119,54 @@ void AMainCharacter::TurnAround(float Amount)
 void AMainCharacter::Landed(const FHitResult& Hit)
 {
 	Super::Landed(Hit);
-
-	CanMove = false;
+	
+	GetCharacterMovement()->DisableMovement();
 	FTimerHandle LandingTimerHandle;
 	GetWorldTimerManager().SetTimer(LandingTimerHandle, this, &AMainCharacter::OnLandingEnd, LandingDelay, false);
 }
 
 void AMainCharacter::OnDeath()
 {
+	ShowCursor();
+	this->bCameraMovement = false;
 	GetCharacterMovement()->DisableMovement();
+	
 	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
 	GetMesh()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	GetMesh()->SetSimulatePhysics(true);
 }
 
+void AMainCharacter::Destroyed()
+{
+	HealthComponent->OnDeath.Broadcast();
+	
+	Super::Destroyed();
+}
+
+void AMainCharacter::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	Super::NotifyActorBeginOverlap(OtherActor);
+	
+	if (OtherActor->IsA<AFinishSpace>())
+	{
+		Finished = true;
+
+		ShowCursor();
+		this->bCameraMovement = false;
+		GetCharacterMovement()->DisableMovement();
+	}
+}
+
+void AMainCharacter::ShowCursor()
+{
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	if (!PlayerController)
+		return;
+	
+	PlayerController->bShowMouseCursor = true;
+}
+
 void AMainCharacter::OnLandingEnd()
 {
-	CanMove = true;
+	GetCharacterMovement()->SetMovementMode(MOVE_Walking);
 }

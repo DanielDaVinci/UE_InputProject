@@ -5,23 +5,20 @@
 #include "CoreMinimal.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
-#include "BaseTrap.generated.h"
+#include "FinishSpace.generated.h"
 
 UCLASS()
-class INPUTPROJECT_API ABaseTrap : public AActor
+class INPUTPROJECT_API AFinishSpace : public AActor
 {
 	GENERATED_BODY()
 
 public:
-	ABaseTrap();
+	AFinishSpace();
 
 protected:
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	USceneComponent* SceneComponent;
-	
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UBoxComponent* CollisionComponent;
 
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UStaticMeshComponent* StaticMeshComponent;
+	UPROPERTY(VisibleAnywhere, Category="Components")
+	UBoxComponent* CollisionComponent;
 };

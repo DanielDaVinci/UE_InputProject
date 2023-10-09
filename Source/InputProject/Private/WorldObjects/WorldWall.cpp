@@ -1,24 +1,31 @@
 // Input game. All Rights Reserved.
 
 
-#include "Traps/BaseTrap.h"
+#include "WorldObjects/WorldWall.h"
 
-ABaseTrap::ABaseTrap()
+#include "MainCharacter.h"
+#include "Components/HealthComponent.h"
+#include "Kismet/GameplayStatics.h"
+
+AWorldWall::AWorldWall()
 {
 	PrimaryActorTick.bCanEverTick = false;
 
 	SceneComponent = CreateDefaultSubobject<USceneComponent>("SceneComponent");
 	SetRootComponent(SceneComponent);
-	
+
 	CollisionComponent = CreateDefaultSubobject<UBoxComponent>("CollisionComponent");
 	CollisionComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	CollisionComponent->SetCollisionResponseToAllChannels(ECR_Ignore);
 	CollisionComponent->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 	CollisionComponent->SetupAttachment(GetRootComponent());
+	CollisionComponent->SetupAttachment(SceneComponent);
+}
 
-	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
-	StaticMeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	StaticMeshComponent->SetCollisionResponseToAllChannels(ECR_Block);
-	StaticMeshComponent->SetupAttachment(GetRootComponent());
+void AWorldWall::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	Super::NotifyActorBeginOverlap(OtherActor);
+
+	OtherActor->Destroy();
 }
 

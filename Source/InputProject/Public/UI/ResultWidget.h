@@ -3,28 +3,27 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ResultWidget.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/Button.h"
 #include "Components/HealthComponent.h"
-#include "PlayerHUDWidget.generated.h"
-
+#include "Components/TextBlock.h"
+#include "ResultWidget.generated.h"
 
 UCLASS()
-class INPUTPROJECT_API UPlayerHUDWidget : public UUserWidget
+class INPUTPROJECT_API UResultWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
 protected:
-
-	UFUNCTION(BlueprintCallable, Category="UI")
-	float GetHealthPercent() const;
-
-	UFUNCTION(BlueprintCallable, Category="UI")
-	bool IsDeadOrDestroyed() const;
-
 	UFUNCTION(BlueprintCallable, Category="UI")
 	bool IsFinished() const;
+
+	UFUNCTION(BlueprintCallable, Category="UI")
+	FTimespan GetLifeTime() const;
+
+	UFUNCTION(BlueprintCallable, Category="UI")
+	void ResetLevel();
+
 private:
-	
 	UHealthComponent* GetHealthComponent() const;
 };

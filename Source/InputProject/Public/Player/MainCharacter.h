@@ -17,6 +17,10 @@ class INPUTPROJECT_API AMainCharacter : public ACharacter
 public:
 	AMainCharacter();
 
+	bool IsFinished() const { return Finished; }
+
+	FDateTime GetCharacterSpawnTime() const { return CharacterSpawnTime; }
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Components")
 	USpringArmComponent* SpringArmComponent;
@@ -27,6 +31,12 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Components")
 	UHealthComponent* HealthComponent;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Camera")
+	bool bCameraMovement = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera")
+	float CameraSpeedPitchRotation = 1.0f;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera")
 	float CameraSpeedYawRotation = 2.0f;
 
@@ -39,20 +49,29 @@ protected:
 
 	void OnDeath();
 
+	virtual void Destroyed() override;
+
+	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
+
+	void ShowCursor();
+
 public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 private:
-	bool CanMove = true;
+	bool Finished;
+
+	FDateTime CharacterSpawnTime;
 
 	void MoveForward(float Amount);
 	void MoveRight(float Amount);
 
 	void SetCharacterDirToVelocityDir();
 
-	void TurnAround(float Amount);
+	void PitchInput(float Amount);
+	void YawInput(float Amount);
 
 	UFUNCTION()
 	void OnLandingEnd();

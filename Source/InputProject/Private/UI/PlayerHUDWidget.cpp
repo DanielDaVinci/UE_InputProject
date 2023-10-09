@@ -3,12 +3,10 @@
 
 #include "UI/PlayerHUDWidget.h"
 
+#include "MainCharacter.h"
+#include "Blueprint/WidgetTree.h"
 #include "Components/HealthComponent.h"
-
-bool UPlayerHUDWidget::Initialize()
-{
-	return Super::Initialize();
-}
+#include "UI/ResultWidget.h"
 
 float UPlayerHUDWidget::GetHealthPercent() const
 {
@@ -19,13 +17,22 @@ float UPlayerHUDWidget::GetHealthPercent() const
 	return HealthComponent->GetHealthPercent();
 }
 
-bool UPlayerHUDWidget::IsDead() const
+bool UPlayerHUDWidget::IsDeadOrDestroyed() const
 {
 	UHealthComponent* HealthComponent = GetHealthComponent();
 	if (!HealthComponent)
 		return true;
-
+	
 	return HealthComponent->IsDead();
+}
+
+bool UPlayerHUDWidget::IsFinished() const
+{
+	AMainCharacter* MainCharacter = Cast<AMainCharacter>(GetOwningPlayerPawn());
+	if (!MainCharacter)
+		return false;
+
+	return MainCharacter->IsFinished();
 }
 
 UHealthComponent* UPlayerHUDWidget::GetHealthComponent() const
