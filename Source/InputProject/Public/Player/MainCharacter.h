@@ -20,6 +20,8 @@ public:
 	bool IsFinished() const { return Finished; }
 
 	FDateTime GetCharacterSpawnTime() const { return CharacterSpawnTime; }
+	
+	void EnableMeshPhysics();
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Components")
@@ -42,6 +44,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
 	float LandingDelay = 0.5f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
+	bool bCanMove = true;
 
 	virtual void BeginPlay() override;
 

@@ -33,7 +33,8 @@ void AGustWindTrap::NotifyActorEndOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorEndOverlap(OtherActor);
 
-	PrimaryActorTick.bCanEverTick = false;
+	if (TrappedActors.Num() == 1)
+		PrimaryActorTick.bCanEverTick = false;
 	TrappedActors.Remove(OtherActor);
 }
 

@@ -24,6 +24,7 @@ protected:
 
 	UFUNCTION(BlueprintCallable, Category="UI")
 	bool IsFinished() const;
+	
 private:
 	
 	UHealthComponent* GetHealthComponent() const;

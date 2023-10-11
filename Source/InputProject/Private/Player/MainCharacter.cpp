@@ -66,7 +66,7 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 void AMainCharacter::MoveForward(float Amount)
 {
-	if (!CameraComponent)
+	if (!bCanMove || !CameraComponent)
 		return;
 	
 	AddMovementInput(CameraComponent->GetForwardVector().GetSafeNormal2D(), Amount);
@@ -76,7 +76,7 @@ void AMainCharacter::MoveForward(float Amount)
 
 void AMainCharacter::MoveRight(float Amount)
 {
-	if (!CameraComponent)
+	if (!bCanMove || !CameraComponent)
 		return;
 	
 	AddMovementInput(CameraComponent->GetRightVector().GetSafeNormal2D(), Amount);
@@ -119,8 +119,8 @@ void AMainCharacter::YawInput(float Amount)
 void AMainCharacter::Landed(const FHitResult& Hit)
 {
 	Super::Landed(Hit);
-	
-	GetCharacterMovement()->DisableMovement();
+
+	bCanMove = false;
 	FTimerHandle LandingTimerHandle;
 	GetWorldTimerManager().SetTimer(LandingTimerHandle, this, &AMainCharacter::OnLandingEnd, LandingDelay, false);
 }
@@ -131,9 +131,7 @@ void AMainCharacter::OnDeath()
 	this->bCameraMovement = false;
 	GetCharacterMovement()->DisableMovement();
 	
-	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
-	GetMesh()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	GetMesh()->SetSimulatePhysics(true);
+	EnableMeshPhysics();
 }
 
 void AMainCharacter::Destroyed()
@@ -166,7 +164,14 @@ void AMainCharacter::ShowCursor()
 	PlayerController->bShowMouseCursor = true;
 }
 
+void AMainCharacter::EnableMeshPhysics()
+{
+	GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
+	GetMesh()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	GetMesh()->SetSimulatePhysics(true);
+}
+
 void AMainCharacter::OnLandingEnd()
 {
-	GetCharacterMovement()->SetMovementMode(MOVE_Walking);
+	bCanMove = true;
 }

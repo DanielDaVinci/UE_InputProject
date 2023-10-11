@@ -4,9 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Components/Button.h"
 #include "Components/HealthComponent.h"
-#include "Components/TextBlock.h"
 #include "ResultWidget.generated.h"
 
 UCLASS()
@@ -22,7 +20,7 @@ protected:
 	FTimespan GetLifeTime() const;
 
 	UFUNCTION(BlueprintCallable, Category="UI")
-	void ResetLevel();
+	void RestartLevel();
 
 private:
 	UHealthComponent* GetHealthComponent() const;

@@ -5,7 +5,7 @@
 
 #include "MainCharacter.h"
 #include "Blueprint/WidgetTree.h"
-#include "Components/TextBlock.h"
+#include "Kismet/GameplayStatics.h"
 
 bool UResultWidget::IsFinished() const
 {
@@ -35,8 +35,10 @@ FTimespan UResultWidget::GetLifeTime() const
 	return GameEndTime - GameStartTime;
 }
 
-void UResultWidget::ResetLevel()
+void UResultWidget::RestartLevel()
 {
+	ULevel* CurrentLevel = GetWorld()->GetCurrentLevel();
+	UGameplayStatics::OpenLevel(GetWorld(), FName(CurrentLevel->GetOuter()->GetName()), true);
 }
 
 UHealthComponent* UResultWidget::GetHealthComponent() const
@@ -44,6 +46,6 @@ UHealthComponent* UResultWidget::GetHealthComponent() const
 	APawn* Player = GetOwningPlayerPawn();
 	if (!Player)
 		return nullptr;
-
+	
 	return Cast<UHealthComponent>(Player->GetComponentByClass(UHealthComponent::StaticClass()));
 }

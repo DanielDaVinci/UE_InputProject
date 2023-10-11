@@ -4,9 +4,7 @@
 #include "UI/PlayerHUDWidget.h"
 
 #include "MainCharacter.h"
-#include "Blueprint/WidgetTree.h"
 #include "Components/HealthComponent.h"
-#include "UI/ResultWidget.h"
 
 float UPlayerHUDWidget::GetHealthPercent() const
 {
@@ -22,7 +20,7 @@ bool UPlayerHUDWidget::IsDeadOrDestroyed() const
 	UHealthComponent* HealthComponent = GetHealthComponent();
 	if (!HealthComponent)
 		return true;
-	
+
 	return HealthComponent->IsDead();
 }
 

@@ -20,14 +20,13 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
 	float WindChangeFrequency = 2.0f;
-
+	
 	UFUNCTION()
 	void ChangeRandomWindDirection();
 
 	virtual void BeginPlay() override;
 
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
-
 	virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
 
 	void MoveTrappedActors(float DeltaTime);
