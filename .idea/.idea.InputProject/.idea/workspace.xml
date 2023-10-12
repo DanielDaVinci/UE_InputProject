@@ -8,23 +8,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e831514d-e55c-4e68-b533-d4a947c214a2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.InputProject/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.InputProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InputProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultInput.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultInput.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Materials/Beige.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Materials/Beige.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Materials/Brown.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Materials/Brown.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Materials/Green.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Materials/Green.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Materials/Metal.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Materials/Metal.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Materials/Red.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Materials/Red.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileHigh_desert.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileHigh_desert.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileHigh_forest.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileHigh_forest.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileMedium_desert.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileMedium_desert.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileMedium_forest.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileMedium_forest.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileSlopeLowHigh_desert.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileSlopeLowHigh_desert.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileSlopeLowMedium_desert.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileSlopeLowMedium_desert.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileSlopeLowMedium_forest.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileSlopeLowMedium_forest.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileSlopeMediumHigh_desert.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileSlopeMediumHigh_desert.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileSlopeMediumHigh_forest.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/ExternalContent/Tiles/tileSlopeMediumHigh_forest.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/LS_BombTile.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/LS_BombTile.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestMap.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/TestMap_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestMap_BuiltData.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Player/BP_MainCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Player/BP_MainCharacter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Traps/BP_BombTrap.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Traps/BP_BombTrap.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WBP_PLayerHUD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WBP_PLayerHUD.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Traps/BP_GustWindTrap.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Traps/BP_GustWindTrap.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Traps/BP_TrampolineTrap.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Traps/BP_TrampolineTrap.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/UI/WBP_Result.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WBP_Result.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/Player/MainCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/Player/MainCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/Traps/GustWindTrap.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/Traps/GustWindTrap.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/Traps/RepulsiveTrap.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/UI/PlayerHUDWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/UI/PlayerHUDWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/UI/ResultWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/UI/ResultWidget.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/Player/MainCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/Player/MainCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/Traps/GustWindTrap.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/Traps/GustWindTrap.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/Traps/RepulsiveTrap.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/UI/PlayerHUDWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/UI/PlayerHUDWidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/UI/ResultWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/UI/ResultWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/Traps/BombTrap.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/Traps/BombTrap.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,8 +213,18 @@
       <option name="presentableId" value="Default" />
       <updated>1696973030567</updated>
       <workItem from="1696973032981" duration="5344000" />
-      <workItem from="1696978688119" duration="7860000" />
+      <workItem from="1696978688119" duration="7940000" />
+      <workItem from="1697064138135" duration="2160000" />
     </task>
+    <task id="LOCAL-00001" summary="Remove RepulsiveTrap, Add TrampolineTrap and DisappearTrap">
+      <option name="closed" value="true" />
+      <created>1696987224642</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1696987224642</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,5 +233,7 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Remove RepulsiveTrap, Add TrampolineTrap and DisappearTrap" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove RepulsiveTrap, Add TrampolineTrap and DisappearTrap" />
   </component>
 </project>

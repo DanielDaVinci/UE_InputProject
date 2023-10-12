@@ -80,4 +80,6 @@ private:
 
 	UFUNCTION()
 	void OnLandingEnd();
+
+	void QuitGame();
 };

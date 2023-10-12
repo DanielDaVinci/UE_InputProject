@@ -29,7 +29,7 @@ protected:
 	FLinearColor ExplosionColor;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Damage")
-	float Damage = 30.0f;
+	float Damage = 50.0f;
 
 	UFUNCTION(BlueprintCallable)
 	void SetScaleByPercent(float PercentProgress);

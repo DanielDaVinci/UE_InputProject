@@ -62,6 +62,7 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis("TurnAround", this, &AMainCharacter::YawInput);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AMainCharacter::Jump);
+	PlayerInputComponent->BindAction("Quit", IE_Pressed, this, &AMainCharacter::QuitGame);
 }
 
 void AMainCharacter::MoveForward(float Amount)
@@ -174,4 +175,13 @@ void AMainCharacter::EnableMeshPhysics()
 void AMainCharacter::OnLandingEnd()
 {
 	bCanMove = true;
+}
+
+void AMainCharacter::QuitGame()
+{
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	if (!PlayerController)
+		return;
+
+	UKismetSystemLibrary::QuitGame(GetWorld(), PlayerController, EQuitPreference::Quit, false);
 }
