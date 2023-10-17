@@ -12,7 +12,6 @@ void ADisappearTrap::StartShakeAnimation()
 void ADisappearTrap::Shake()
 {
 	FVector ShakeShift = FMath::VRand() * ShakingAmplitude;
-	UE_LOG(LogTemp, Display, TEXT("%s"), *ShakeShift.ToString());
 	SetActorLocation(GetActorLocation() - CurrentShakeShift + ShakeShift);
 
 	CurrentShakeShift = ShakeShift;

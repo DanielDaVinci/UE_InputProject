@@ -37,18 +37,18 @@ void ABombTrap::Reload()
 	
 	SetSecondaryColor(ExplosionColor);
     CollisionComponent->SetGenerateOverlapEvents(false);
-    
-    auto fun = [this]()
-    {
-    	SetSecondaryColor(WarningColor);
-    	CollisionComponent->SetGenerateOverlapEvents(true);
-    	CollisionComponent->UpdateOverlaps();
-
-    	EndReload();
-    };
 
     FTimerHandle ReloadTimer;
-    GetWorldTimerManager().SetTimer(ReloadTimer, fun, ReloadTime, false);
+    GetWorldTimerManager().SetTimer(ReloadTimer, this, &ABombTrap::OnEndReload, ReloadTime, false);
+}
+
+void ABombTrap::OnEndReload()
+{
+	SetSecondaryColor(WarningColor);
+	CollisionComponent->SetGenerateOverlapEvents(true);
+	CollisionComponent->UpdateOverlaps();
+
+	EndReload();
 }
 
 void ABombTrap::BeginPlay()

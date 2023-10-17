@@ -20,6 +20,9 @@ public class InputProject : ModuleRules
 		{
 			"InputProject/Public/Player",
 			"InputProject/Public/Traps",
+			"InputProject/Public/Components",
+			"InputProject/Public/UI",
+			"InputProject/Public/WorldObjects",
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[]

@@ -43,6 +43,8 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void Reload();
 
+	void OnEndReload();
+
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartReload();
 
