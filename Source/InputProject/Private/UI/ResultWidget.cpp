@@ -41,6 +41,12 @@ void UResultWidget::RestartLevel()
 	UGameplayStatics::OpenLevel(GetWorld(), FName(CurrentLevel->GetOuter()->GetName()), true);
 }
 
+void UResultWidget::SetInputOnUI()
+{
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	PlayerController->SetInputMode(FInputModeUIOnly());
+}
+
 UHealthComponent* UResultWidget::GetHealthComponent() const
 {
 	APawn* Player = GetOwningPlayerPawn();

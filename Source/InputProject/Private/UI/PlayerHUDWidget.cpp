@@ -5,6 +5,7 @@
 
 #include "MainCharacter.h"
 #include "Components/HealthComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 float UPlayerHUDWidget::GetHealthPercent() const
 {
@@ -31,6 +32,21 @@ bool UPlayerHUDWidget::IsFinished() const
 		return false;
 
 	return MainCharacter->IsFinished();
+}
+
+void UPlayerHUDWidget::SetOnceInputOnUI()
+{
+	static APlayerController* LastPlayerController = nullptr;
+	static bool FirstTime = true;
+
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	
+	if (!FirstTime && PlayerController == LastPlayerController)
+		return;
+
+	FirstTime = false;
+	LastPlayerController = PlayerController;
+	PlayerController->SetInputMode(FInputModeUIOnly());
 }
 
 UHealthComponent* UPlayerHUDWidget::GetHealthComponent() const

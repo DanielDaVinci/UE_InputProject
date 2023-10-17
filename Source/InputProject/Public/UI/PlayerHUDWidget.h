@@ -24,6 +24,9 @@ protected:
 
 	UFUNCTION(BlueprintCallable, Category="UI")
 	bool IsFinished() const;
+
+	UFUNCTION(BlueprintCallable)
+	void SetOnceInputOnUI();
 	
 private:
 	

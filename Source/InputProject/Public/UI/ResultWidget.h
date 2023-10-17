@@ -22,6 +22,8 @@ protected:
 	UFUNCTION(BlueprintCallable, Category="UI")
 	void RestartLevel();
 
+	void SetInputOnUI();
+
 private:
 	UHealthComponent* GetHealthComponent() const;
 };

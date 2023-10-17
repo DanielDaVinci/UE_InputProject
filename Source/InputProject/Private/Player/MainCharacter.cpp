@@ -37,6 +37,8 @@ void AMainCharacter::BeginPlay()
 	Finished = false;
 	CharacterSpawnTime = FDateTime::Now();
 
+	SetInputOnGame();
+
 	HealthComponent->OnDeath.AddUObject(this, &AMainCharacter::OnDeath);
 
 	SpringArmComponent->SetRelativeRotation(GetActorRotation());
@@ -163,6 +165,12 @@ void AMainCharacter::ShowCursor()
 		return;
 	
 	PlayerController->bShowMouseCursor = true;
+}
+
+void AMainCharacter::SetInputOnGame()
+{
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	PlayerController->SetInputMode(FInputModeGameOnly());
 }
 
 void AMainCharacter::EnableMeshPhysics()

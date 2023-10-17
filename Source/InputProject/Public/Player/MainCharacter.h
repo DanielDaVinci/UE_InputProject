@@ -60,6 +60,8 @@ protected:
 
 	void ShowCursor();
 
+	void SetInputOnGame();
+
 public:
 	virtual void Tick(float DeltaTime) override;
 
