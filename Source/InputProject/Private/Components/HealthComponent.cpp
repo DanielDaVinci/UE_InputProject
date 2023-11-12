@@ -13,7 +13,7 @@ void UHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetHealth(MaxHealth);
+	SetHealth(m_maxHealth);
 
 	AActor* Owner = GetOwner();
 	if (Owner)
@@ -28,7 +28,7 @@ void UHealthComponent::OnTakeAnyDamage(AActor* DamagedActor, float Damage, const
 	if (Damage <= 0.0f || IsDead())
 		return;
 
-	SetHealth(Health - Damage);
+	SetHealth(m_health - Damage);
 
 	if (IsDead())
 	{
@@ -38,7 +38,7 @@ void UHealthComponent::OnTakeAnyDamage(AActor* DamagedActor, float Damage, const
 
 void UHealthComponent::SetHealth(float NewHealth)
 {
-	Health = FMath::Clamp(NewHealth, 0.0f, MaxHealth);
+	m_health = FMath::Clamp(NewHealth, 0.0f, m_maxHealth);
 
-	OnHealthChanged.Broadcast(Health);
+	OnHealthChanged.Broadcast(m_health);
 }

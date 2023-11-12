@@ -17,11 +17,11 @@ public:
 
 protected:
 	UPROPERTY(VisibleAnywhere, Category="Components")
-	USceneComponent* SceneComponent;
-	
-	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UBoxComponent* CollisionComponent;
+	USceneComponent* m_pSceneComponent;
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")
-	UStaticMeshComponent* StaticMeshComponent;
+	UBoxComponent* m_pCollisionComponent;
+
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UStaticMeshComponent* m_pStaticMeshComponent;
 };

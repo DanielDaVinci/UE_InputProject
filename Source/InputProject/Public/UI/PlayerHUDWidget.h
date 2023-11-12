@@ -13,9 +13,8 @@ UCLASS()
 class INPUTPROJECT_API UPlayerHUDWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
-protected:
 
+protected:
 	UFUNCTION(BlueprintCallable, Category="UI")
 	float GetHealthPercent() const;
 
@@ -27,8 +26,7 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void SetOnceInputOnUI();
-	
+
 private:
-	
 	UHealthComponent* GetHealthComponent() const;
 };

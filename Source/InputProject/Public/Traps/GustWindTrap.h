@@ -16,11 +16,11 @@ public:
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
-	float WindForce = 1.0f;
+	float m_windForce = 1.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
-	float WindChangeFrequency = 2.0f;
-	
+	float m_windChangeFrequency = 2.0f;
+
 	UFUNCTION()
 	void ChangeRandomWindDirection();
 
@@ -30,15 +30,14 @@ protected:
 	virtual void NotifyActorEndOverlap(AActor* OtherActor) override;
 
 	void MoveTrappedActors(float DeltaTime);
-	
+
 public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	FVector2D CurrentWindDirection;
-
-	FTimerHandle DirectionChangeTimer;
+	FVector2D m_currentWindDirection;
+	FTimerHandle m_directionChangeTimer;
 
 	UPROPERTY()
-	TArray<AActor*> TrappedActors;
+	TArray<AActor*> m_trappedActors;
 };

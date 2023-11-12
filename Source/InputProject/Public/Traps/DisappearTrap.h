@@ -13,13 +13,13 @@ class INPUTPROJECT_API ADisappearTrap : public ABaseTrap
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
-	float AnimationTime = 1.0f;
+	float m_animationTime = 1.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
-	float ShakingFrequency = 0.01f;
+	float m_shakingFrequency = 0.01f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation", meta=(ClampMin="0.0", ClampMax="10.0"))
-	float ShakingAmplitude = 2.0f;
+	float m_shakingAmplitude = 2.0f;
 
 	void StartShakeAnimation();
 
@@ -30,8 +30,8 @@ protected:
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 
 private:
-	FTimerHandle ShakeTimer;
-	FTimerHandle AnimationTimer;
+	FTimerHandle m_shakeTimer;
+	FTimerHandle m_animationTimer;
 
-	FVector CurrentShakeShift = {0.0f, 0.0f, 0.0f};
+	FVector m_currentShakeShift = {0.0f, 0.0f, 0.0f};
 };

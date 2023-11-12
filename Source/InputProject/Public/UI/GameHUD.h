@@ -6,18 +6,14 @@
 #include "GameFramework/HUD.h"
 #include "GameHUD.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class INPUTPROJECT_API AGameHUD : public AHUD
 {
 	GENERATED_BODY()
 
 protected:
-
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="UI")
-	TSubclassOf<UUserWidget> PlayerHUDWidgetClass;
+	TSubclassOf<UUserWidget> m_playerHUDWidgetClass;
 
 	virtual void BeginPlay() override;
 };

@@ -9,15 +9,28 @@
   <component name="ChangeListManager">
     <list default="true" id="e831514d-e55c-4e68-b533-d4a947c214a2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.InputProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InputProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/TestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestMap.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/TestMap_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestMap_BuiltData.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WBP_PLayerHUD.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WBP_PLayerHUD.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/Components/HealthComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/Components/HealthComponent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/Player/MainCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/Player/MainCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/UI/PlayerHUDWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/UI/PlayerHUDWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/UI/ResultWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/UI/ResultWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/Traps/BaseTrap.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/Traps/BaseTrap.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/Traps/BombTrap.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/Traps/BombTrap.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/Traps/DisappearTrap.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/Traps/DisappearTrap.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/Traps/GustWindTrap.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/Traps/GustWindTrap.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/Traps/TrampolineTrap.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/Traps/TrampolineTrap.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/UI/GameHUD.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/UI/GameHUD.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/WorldObjects/FinishSpace.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/WorldObjects/FinishSpace.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Private/WorldObjects/WorldWall.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Private/WorldObjects/WorldWall.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/Components/HealthComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/Components/HealthComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/Player/MainCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/Player/MainCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/Traps/BaseTrap.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/Traps/BaseTrap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/Traps/BombTrap.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/Traps/BombTrap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/Traps/DisappearTrap.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/Traps/DisappearTrap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/Traps/GustWindTrap.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/Traps/GustWindTrap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/Traps/TrampolineTrap.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/Traps/TrampolineTrap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/UI/GameHUD.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/UI/GameHUD.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/UI/PlayerHUDWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/UI/PlayerHUDWidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/UI/ResultWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/UI/ResultWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/WorldObjects/FinishSpace.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/WorldObjects/FinishSpace.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/InputProject/Public/WorldObjects/WorldWall.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/InputProject/Public/WorldObjects/WorldWall.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,9 +82,9 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\Demos\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Demos\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\Demos\\AppData\\Local\\Symbols\\src"
+      "C:\\Users\\danii\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
+      "C:\\Users\\danii\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
+      "C:\\Users\\danii\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
@@ -208,6 +221,7 @@
       <workItem from="1697141969752" duration="52000" />
       <workItem from="1697549516516" duration="4029000" />
       <workItem from="1697554250449" duration="3519000" />
+      <workItem from="1699793753582" duration="1320000" />
     </task>
     <task id="LOCAL-00001" summary="Remove RepulsiveTrap, Add TrampolineTrap and DisappearTrap">
       <option name="closed" value="true" />

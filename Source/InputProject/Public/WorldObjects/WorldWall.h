@@ -17,10 +17,10 @@ public:
 
 protected:
 	UPROPERTY(VisibleAnywhere, Category="Components")
-	USceneComponent* SceneComponent;
+	USceneComponent* m_pSceneComponent;
 
 	UPROPERTY(VisibleAnywhere, Category="Components")
-	UBoxComponent* CollisionComponent;
+	UBoxComponent* m_pCollisionComponent;
 
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 };

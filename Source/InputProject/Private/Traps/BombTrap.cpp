@@ -8,13 +8,13 @@
 
 void ABombTrap::SetScaleByPercent(float PercentProgress)
 {
-	const FVector NewScale = (EndScale - FVector::OneVector) * PercentProgress + FVector::OneVector;
+	const FVector NewScale = (m_endScale - FVector::OneVector) * PercentProgress + FVector::OneVector;
 	SetActorScale3D(NewScale);
 }
 
 void ABombTrap::SetWarningColorByPercent(float PercentProgress)
 {
-	if (!DynamicMaterial)
+	if (!m_dynamicMaterial)
 		return;
 
 	SetColorBlend(PercentProgress);
@@ -27,7 +27,7 @@ void ABombTrap::Explode()
 	
 	for (AActor* Actor : OverlapActors)
 	{
-		UGameplayStatics::ApplyDamage(Actor, Damage, nullptr, this, nullptr);
+		UGameplayStatics::ApplyDamage(Actor, m_damage, nullptr, this, nullptr);
 	}
 }
 
@@ -35,18 +35,18 @@ void ABombTrap::Reload()
 {
 	StartReload();
 	
-	SetSecondaryColor(ExplosionColor);
-    CollisionComponent->SetGenerateOverlapEvents(false);
+	SetSecondaryColor(m_explosionColor);
+    m_pCollisionComponent->SetGenerateOverlapEvents(false);
 
     FTimerHandle ReloadTimer;
-    GetWorldTimerManager().SetTimer(ReloadTimer, this, &ABombTrap::OnEndReload, ReloadTime, false);
+    GetWorldTimerManager().SetTimer(ReloadTimer, this, &ABombTrap::OnEndReload, m_reloadTime, false);
 }
 
 void ABombTrap::OnEndReload()
 {
-	SetSecondaryColor(WarningColor);
-	CollisionComponent->SetGenerateOverlapEvents(true);
-	CollisionComponent->UpdateOverlaps();
+	SetSecondaryColor(m_warningColor);
+	m_pCollisionComponent->SetGenerateOverlapEvents(true);
+	m_pCollisionComponent->UpdateOverlaps();
 
 	EndReload();
 }
@@ -56,34 +56,34 @@ void ABombTrap::BeginPlay()
 	Super::BeginPlay();
 
 	SetDynamicMaterial();
-	SetSecondaryColor(WarningColor);
+	SetSecondaryColor(m_warningColor);
 }
 
 void ABombTrap::SetDynamicMaterial()
 {
-	if (!StaticMeshComponent)
+	if (!m_pStaticMeshComponent)
 		return;
 
-	UMaterialInterface* Material = StaticMeshComponent->GetMaterial(0);
+	UMaterialInterface* Material = m_pStaticMeshComponent->GetMaterial(0);
 	if (!Material)
 		return;
 
-	DynamicMaterial = UMaterialInstanceDynamic::Create(Material, nullptr);
-	StaticMeshComponent->SetMaterial(0, DynamicMaterial);
+	m_dynamicMaterial = UMaterialInstanceDynamic::Create(Material, nullptr);
+	m_pStaticMeshComponent->SetMaterial(0, m_dynamicMaterial);
 }
 
 void ABombTrap::SetSecondaryColor(FLinearColor Color)
 {
-	if (!DynamicMaterial)
+	if (!m_dynamicMaterial)
 		return;
 
-	DynamicMaterial->SetVectorParameterValue(TEXT("Secondary Color"), Color);
+	m_dynamicMaterial->SetVectorParameterValue(TEXT("Secondary Color"), Color);
 }
 
 void ABombTrap::SetColorBlend(float Value)
 {
-	if (!DynamicMaterial)
+	if (!m_dynamicMaterial)
 		return;
 
-	DynamicMaterial->SetScalarParameterValue(TEXT("Blend"), Value);
+	m_dynamicMaterial->SetScalarParameterValue(TEXT("Blend"), Value);
 }

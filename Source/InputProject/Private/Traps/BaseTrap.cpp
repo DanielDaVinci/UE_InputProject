@@ -7,18 +7,18 @@ ABaseTrap::ABaseTrap()
 {
 	PrimaryActorTick.bCanEverTick = false;
 
-	SceneComponent = CreateDefaultSubobject<USceneComponent>("SceneComponent");
-	SetRootComponent(SceneComponent);
+	m_pSceneComponent = CreateDefaultSubobject<USceneComponent>("SceneComponent");
+	SetRootComponent(m_pSceneComponent);
 	
-	CollisionComponent = CreateDefaultSubobject<UBoxComponent>("CollisionComponent");
-	CollisionComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-	CollisionComponent->SetCollisionResponseToAllChannels(ECR_Ignore);
-	CollisionComponent->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
-	CollisionComponent->SetupAttachment(GetRootComponent());
+	m_pCollisionComponent = CreateDefaultSubobject<UBoxComponent>("CollisionComponent");
+	m_pCollisionComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	m_pCollisionComponent->SetCollisionResponseToAllChannels(ECR_Ignore);
+	m_pCollisionComponent->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
+	m_pCollisionComponent->SetupAttachment(GetRootComponent());
 
-	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
-	StaticMeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	StaticMeshComponent->SetCollisionResponseToAllChannels(ECR_Block);
-	StaticMeshComponent->SetupAttachment(GetRootComponent());
+	m_pStaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
+	m_pStaticMeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	m_pStaticMeshComponent->SetCollisionResponseToAllChannels(ECR_Block);
+	m_pStaticMeshComponent->SetupAttachment(GetRootComponent());
 }
 

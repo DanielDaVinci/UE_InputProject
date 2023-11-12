@@ -14,22 +14,22 @@ class INPUTPROJECT_API ABombTrap : public ABaseTrap
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
-	float AnimationTime = 1.0f;
+	float m_animationTime = 1.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
-	float ReloadTime = 5.0f;
+	float m_reloadTime = 5.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
-	FVector EndScale = {1.2f, 1.2f, 1.2f};
+	FVector m_endScale = {1.2f, 1.2f, 1.2f};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
-	FLinearColor WarningColor;
+	FLinearColor m_warningColor;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Animation")
-	FLinearColor ExplosionColor;
+	FLinearColor m_explosionColor;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Damage")
-	float Damage = 50.0f;
+	float m_damage = 50.0f;
 
 	UFUNCTION(BlueprintCallable)
 	void SetScaleByPercent(float PercentProgress);
@@ -55,7 +55,7 @@ protected:
 
 private:
 	UPROPERTY()
-	UMaterialInstanceDynamic* DynamicMaterial;
+	UMaterialInstanceDynamic* m_dynamicMaterial;
 	void SetDynamicMaterial();
 
 	void SetSecondaryColor(FLinearColor Color);

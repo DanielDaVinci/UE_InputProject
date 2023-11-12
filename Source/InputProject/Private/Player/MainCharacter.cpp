@@ -15,15 +15,15 @@ AMainCharacter::AMainCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("SpringArmComponent");
-	SpringArmComponent->SetupAttachment(GetRootComponent());
-	SpringArmComponent->bUsePawnControlRotation = true;
-	SpringArmComponent->bInheritYaw = false;
+	m_pSpringArmComponent = CreateDefaultSubobject<USpringArmComponent>("SpringArmComponent");
+	m_pSpringArmComponent->SetupAttachment(GetRootComponent());
+	m_pSpringArmComponent->bUsePawnControlRotation = true;
+	m_pSpringArmComponent->bInheritYaw = false;
 
-	CameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
-	CameraComponent->SetupAttachment(SpringArmComponent);
+	m_pCameraComponent = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
+	m_pCameraComponent->SetupAttachment(m_pSpringArmComponent);
 
-	HealthComponent = CreateDefaultSubobject<UHealthComponent>("HealthComponent");
+	m_pHealthComponent = CreateDefaultSubobject<UHealthComponent>("HealthComponent");
 }
 
 
@@ -34,14 +34,14 @@ void AMainCharacter::BeginPlay()
 	check(GetCharacterMovement());
 	check(GetMesh());
 
-	Finished = false;
-	CharacterSpawnTime = FDateTime::Now();
+	m_bFinished = false;
+	m_characterSpawnTime = FDateTime::Now();
 
 	SetInputOnGame();
 
-	HealthComponent->OnDeath.AddUObject(this, &AMainCharacter::OnDeath);
+	m_pHealthComponent->OnDeath.AddUObject(this, &AMainCharacter::OnDeath);
 
-	SpringArmComponent->SetRelativeRotation(GetActorRotation());
+	m_pSpringArmComponent->SetRelativeRotation(GetActorRotation());
 }
 
 
@@ -69,20 +69,20 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 void AMainCharacter::MoveForward(float Amount)
 {
-	if (!bCanMove || !CameraComponent)
+	if (!m_bCanMove || !m_pCameraComponent)
 		return;
 	
-	AddMovementInput(CameraComponent->GetForwardVector().GetSafeNormal2D(), Amount);
+	AddMovementInput(m_pCameraComponent->GetForwardVector().GetSafeNormal2D(), Amount);
 
 	SetCharacterDirToVelocityDir();
 }
 
 void AMainCharacter::MoveRight(float Amount)
 {
-	if (!bCanMove || !CameraComponent)
+	if (!m_bCanMove || !m_pCameraComponent)
 		return;
 	
-	AddMovementInput(CameraComponent->GetRightVector().GetSafeNormal2D(), Amount);
+	AddMovementInput(m_pCameraComponent->GetRightVector().GetSafeNormal2D(), Amount);
 
 	SetCharacterDirToVelocityDir();
 }
@@ -102,36 +102,36 @@ void AMainCharacter::SetCharacterDirToVelocityDir()
 
 void AMainCharacter::PitchInput(float Amount)
 {
-	if (!bCameraMovement)
+	if (!m_bCameraMovement)
 		return;
 	
-	AddControllerPitchInput(Amount * CameraSpeedPitchRotation);
+	AddControllerPitchInput(Amount * m_cameraSpeedPitchRotation);
 }
 
 void AMainCharacter::YawInput(float Amount)
 {
-	if (!bCameraMovement)
+	if (!m_bCameraMovement)
 		return;
 	
-	FRotator Rotation = SpringArmComponent->GetRelativeRotation();
-	Rotation.Yaw += Amount * CameraSpeedYawRotation;
+	FRotator Rotation = m_pSpringArmComponent->GetRelativeRotation();
+	Rotation.Yaw += Amount * m_cameraSpeedYawRotation;
 
-	SpringArmComponent->SetRelativeRotation(Rotation);
+	m_pSpringArmComponent->SetRelativeRotation(Rotation);
 }
 
 void AMainCharacter::Landed(const FHitResult& Hit)
 {
 	Super::Landed(Hit);
 
-	bCanMove = false;
+	m_bCanMove = false;
 	FTimerHandle LandingTimerHandle;
-	GetWorldTimerManager().SetTimer(LandingTimerHandle, this, &AMainCharacter::OnLandingEnd, LandingDelay, false);
+	GetWorldTimerManager().SetTimer(LandingTimerHandle, this, &AMainCharacter::OnLandingEnd, m_landingDelay, false);
 }
 
 void AMainCharacter::OnDeath()
 {
 	ShowCursor();
-	this->bCameraMovement = false;
+	this->m_bCameraMovement = false;
 	GetCharacterMovement()->DisableMovement();
 	
 	EnableMeshPhysics();
@@ -139,7 +139,7 @@ void AMainCharacter::OnDeath()
 
 void AMainCharacter::Destroyed()
 {
-	HealthComponent->OnDeath.Broadcast();
+	m_pHealthComponent->OnDeath.Broadcast();
 	
 	Super::Destroyed();
 }
@@ -150,10 +150,10 @@ void AMainCharacter::NotifyActorBeginOverlap(AActor* OtherActor)
 	
 	if (OtherActor->IsA<AFinishSpace>())
 	{
-		Finished = true;
+		m_bFinished = true;
 
 		ShowCursor();
-		this->bCameraMovement = false;
+		this->m_bCameraMovement = false;
 		GetCharacterMovement()->DisableMovement();
 	}
 }
@@ -182,7 +182,7 @@ void AMainCharacter::EnableMeshPhysics()
 
 void AMainCharacter::OnLandingEnd()
 {
-	bCanMove = true;
+	m_bCanMove = true;
 }
 
 void AMainCharacter::QuitGame()

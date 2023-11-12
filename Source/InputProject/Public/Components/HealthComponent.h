@@ -21,23 +21,23 @@ public:
 	FOnHealthChanged OnHealthChanged;
 
 	UFUNCTION(BlueprintCallable, Category = "Health")
-	bool IsDead() const { return FMath::IsNearlyZero(Health); }
+	bool IsDead() const { return FMath::IsNearlyZero(m_health); }
 
 	UFUNCTION(BlueprintCallable, Category = "Health")
-	float GetHealthPercent() const { return Health / MaxHealth; }
+	float GetHealthPercent() const { return m_health / m_maxHealth; }
 
-	float GetMaxHealth() const { return MaxHealth; }
+	float GetMaxHealth() const { return m_maxHealth; }
 
-	float GetHealth() const { return Health; }
+	float GetHealth() const { return m_health; }
 
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Health", meta = (ClampMin="0.0"))
-	float MaxHealth = 100.0f;
+	float m_maxHealth = 100.0f;
 
 	virtual void BeginPlay() override;
 
 private:
-	float Health = 0.0f;
+	float m_health = 0.0f;
 
 	UFUNCTION()
 	void OnTakeAnyDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType,

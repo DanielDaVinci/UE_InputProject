@@ -7,7 +7,7 @@
 
 void ATrampolineTrap::SetScaleByPercent(float PercentProgress)
 {
-	const FVector NewScale = (EndScale - FVector::OneVector) * PercentProgress + FVector::OneVector;
+	const FVector NewScale = (m_endScale - FVector::OneVector) * PercentProgress + FVector::OneVector;
 	SetActorScale3D(NewScale);
 }
 
@@ -22,8 +22,8 @@ void ATrampolineTrap::Launch()
 		if (!Character)
 			continue;
 		
-		Character->GetCharacterMovement()->Velocity *= XYLaunchBraking;
-		FVector LaunchVelocity(0.0f, 0.0f, ZLaunchVelocity);
+		Character->GetCharacterMovement()->Velocity *= m_xyLaunchBraking;
+		FVector LaunchVelocity(0.0f, 0.0f, m_zLaunchVelocity);
 		Character->LaunchCharacter(LaunchVelocity, false, true);
 	}
 }

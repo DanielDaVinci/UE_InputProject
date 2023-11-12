@@ -17,36 +17,36 @@ class INPUTPROJECT_API AMainCharacter : public ACharacter
 public:
 	AMainCharacter();
 
-	bool IsFinished() const { return Finished; }
+	bool IsFinished() const { return m_bFinished; }
 
-	FDateTime GetCharacterSpawnTime() const { return CharacterSpawnTime; }
-	
+	FDateTime GetCharacterSpawnTime() const { return m_characterSpawnTime; }
+
 	void EnableMeshPhysics();
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Components")
-	USpringArmComponent* SpringArmComponent;
+	USpringArmComponent* m_pSpringArmComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Components")
-	UCameraComponent* CameraComponent;
+	UCameraComponent* m_pCameraComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Components")
-	UHealthComponent* HealthComponent;
+	UHealthComponent* m_pHealthComponent;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Camera")
-	bool bCameraMovement = true;
+	bool m_bCameraMovement = true;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera")
-	float CameraSpeedPitchRotation = 1.0f;
-	
+	float m_cameraSpeedPitchRotation = 1.0f;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera")
-	float CameraSpeedYawRotation = 2.0f;
+	float m_cameraSpeedYawRotation = 2.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
-	float LandingDelay = 0.5f;
+	float m_landingDelay = 0.5f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
-	bool bCanMove = true;
+	bool m_bCanMove = true;
 
 	virtual void BeginPlay() override;
 
@@ -68,9 +68,9 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 private:
-	bool Finished;
+	bool m_bFinished;
 
-	FDateTime CharacterSpawnTime;
+	FDateTime m_characterSpawnTime;
 
 	void MoveForward(float Amount);
 	void MoveRight(float Amount);
